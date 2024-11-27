@@ -1,0 +1,213 @@
+{
+    "driver": [
+      {
+        "character_maximum_length": null,
+        "column_default": "nextval('driver_id_seq'::regclass)",
+        "column_name": "id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "name",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "last_name",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "YES",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "login",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      },
+      {
+        "character_maximum_length": 30,
+        "column_default": null,
+        "column_name": "city",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "YES",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      }
+    ],
+    "spaceship": [
+      {
+        "character_maximum_length": null,
+        "column_default": "nextval('spaceship_id_seq'::regclass)",
+        "column_name": "id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "ship_number",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      },
+      {
+        "character_maximum_length": null,
+        "column_default": null,
+        "column_name": "model_id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      }
+    ],
+    "spaceship_manufacturer": [
+      {
+        "character_maximum_length": null,
+        "column_default": "nextval('spaceship_manufacturer_id_seq'::regclass)",
+        "column_name": "id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "company_name",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "country",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "YES",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "nasdaq_code",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "YES",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      }
+    ],
+    "spaceship_model": [
+      {
+        "character_maximum_length": null,
+        "column_default": "nextval('spaceship_model_id_seq'::regclass)",
+        "column_name": "id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      },
+      {
+        "character_maximum_length": null,
+        "column_default": null,
+        "column_name": "manufacturer_id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      },
+      {
+        "character_maximum_length": 50,
+        "column_default": null,
+        "column_name": "model_name",
+        "data_type": "character varying",
+        "datetime_precision": null,
+        "is_nullable": "YES",
+        "numeric_precision": null,
+        "udt_name": "varchar"
+      },
+      {
+        "character_maximum_length": null,
+        "column_default": null,
+        "column_name": "horsepower",
+        "data_type": "double precision",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 53,
+        "udt_name": "float8"
+      }
+    ],
+    "spaceship_rent": [
+      {
+        "character_maximum_length": null,
+        "column_default": null,
+        "column_name": "driver_id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      },
+      {
+        "character_maximum_length": null,
+        "column_default": null,
+        "column_name": "spaceship_id",
+        "data_type": "integer",
+        "datetime_precision": null,
+        "is_nullable": "NO",
+        "numeric_precision": 32,
+        "udt_name": "int4"
+      },
+      {
+        "character_maximum_length": null,
+        "column_default": null,
+        "column_name": "rent_start",
+        "data_type": "timestamp without time zone",
+        "datetime_precision": 6,
+        "is_nullable": "NO",
+        "numeric_precision": null,
+        "udt_name": "timestamp"
+      },
+      {
+        "character_maximum_length": null,
+        "column_default": null,
+        "column_name": "rent_end",
+        "data_type": "timestamp without time zone",
+        "datetime_precision": 6,
+        "is_nullable": "NO",
+        "numeric_precision": null,
+        "udt_name": "timestamp"
+      }
+    ]
+}
+  

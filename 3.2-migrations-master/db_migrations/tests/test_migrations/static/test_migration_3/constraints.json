@@ -1,0 +1,212 @@
+{
+  "driver": [
+    {
+      "check_clause": null,
+      "column_name": "id",
+      "constraint_type": "PRIMARY KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "driver",
+      "table_name": "driver"
+    },
+    {
+      "check_clause": "id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "driver"
+    },
+    {
+      "check_clause": "login IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "driver"
+    },
+    {
+      "check_clause": "full_name IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "driver"
+    },
+    {
+      "check_clause": null,
+      "column_name": "login",
+      "constraint_type": "UNIQUE",
+      "foreign_or_primary_column_name": "login",
+      "foreign_or_primary_table_name": "driver",
+      "table_name": "driver"
+    }
+  ],
+  "spaceship": [
+    {
+      "check_clause": null,
+      "column_name": "id",
+      "constraint_type": "PRIMARY KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "spaceship",
+      "table_name": "spaceship"
+    },
+    {
+      "check_clause": null,
+      "column_name": "model_id",
+      "constraint_type": "FOREIGN KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "spaceship_model",
+      "table_name": "spaceship"
+    },
+    {
+      "check_clause": "id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship"
+    },
+    {
+      "check_clause": "ship_number IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship"
+    },
+    {
+      "check_clause": "model_id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship"
+    }
+  ],
+  "spaceship_manufacturer": [
+    {
+      "check_clause": null,
+      "column_name": "id",
+      "constraint_type": "PRIMARY KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "spaceship_manufacturer",
+      "table_name": "spaceship_manufacturer"
+    },
+    {
+      "check_clause": "id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_manufacturer"
+    },
+    {
+      "check_clause": "company_name IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_manufacturer"
+    }
+  ],
+  "spaceship_model": [
+    {
+      "check_clause": "(((horsepower >= (170000000)::double precision) AND (horsepower <= (240000000)::double precision)))",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": "horsepower",
+      "foreign_or_primary_table_name": "spaceship_model",
+      "table_name": "spaceship_model"
+    },
+    {
+      "check_clause": "horsepower IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_model"
+    },
+    {
+      "check_clause": null,
+      "column_name": "id",
+      "constraint_type": "PRIMARY KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "spaceship_model",
+      "table_name": "spaceship_model"
+    },
+    {
+      "check_clause": null,
+      "column_name": "manufacturer_id",
+      "constraint_type": "FOREIGN KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "spaceship_manufacturer",
+      "table_name": "spaceship_model"
+    },
+    {
+      "check_clause": "id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_model"
+    },
+    {
+      "check_clause": "manufacturer_id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_model"
+    }
+  ],
+  "spaceship_rent": [
+    {
+      "check_clause": null,
+      "column_name": "driver_id",
+      "constraint_type": "FOREIGN KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "driver",
+      "table_name": "spaceship_rent"
+    },
+    {
+      "check_clause": null,
+      "column_name": "spaceship_id",
+      "constraint_type": "FOREIGN KEY",
+      "foreign_or_primary_column_name": "id",
+      "foreign_or_primary_table_name": "spaceship",
+      "table_name": "spaceship_rent"
+    },
+    {
+      "check_clause": "driver_id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_rent"
+    },
+    {
+      "check_clause": "spaceship_id IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_rent"
+    },
+    {
+      "check_clause": "rent_start IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_rent"
+    },
+    {
+      "check_clause": "rent_end IS NOT NULL",
+      "column_name": null,
+      "constraint_type": "CHECK",
+      "foreign_or_primary_column_name": null,
+      "foreign_or_primary_table_name": null,
+      "table_name": "spaceship_rent"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+version: "2.3"
+
+services:
+    service_hello-container:
+        image: ghcr.io/userver-framework/ubuntu-22.04-userver-pg:latest
+        privileged: true
+        network_mode: bridge
+        environment:
+          - PREFIX=${PREFIX:-~/.local}
+          - CCACHE_DIR=/service_hello/.ccache
+          - CORES_DIR=/cores
+        volumes:
+          - .:/service_hello:rw
+        ports:
+          - 8080:8080
+        working_dir: /service_hello
+        entrypoint:
+          - ./tests/run_as_user.sh

@@ -1,0 +1,45 @@
+openapi: "3.0.2"
+info:
+    title: UrlShortener API
+    version: "1.0"
+servers:
+    - url: http://localhost:8080/
+components:
+    schemas:
+        error:
+            type: object
+            properties:
+                detail:
+                    description: Описание ошибки
+                    type: string
+paths:
+    /v1/hello:
+        post:
+            description: Приветствуем пользователя по имени
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    description: Имя, кого нужно поприветствовать
+                                    type: string
+                                    required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    short_url:
+                                        type: string
+                '400':
+                    description: Неправильный запрос
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/error"

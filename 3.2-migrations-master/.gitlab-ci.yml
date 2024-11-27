@@ -1,0 +1,39 @@
+image: "python:3.7"
+
+before_script:
+  - python --version
+  - python -m pip install --upgrade pip wheel
+  - python -m pip install flake8 pytest
+  - pip install -r requirements.txt
+  - apt-get update && apt-get install -y postgresql postgresql-client
+
+stages:
+  - Static Analysis
+  - Calculating Score
+
+flake8:
+  stage: Static Analysis
+  script:
+  # stop the build if there are Python syntax errors or undefined names
+  - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  # exit-zero treats all errors as warnings
+  - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=79 --statistics
+
+score:
+  stage: Calculating Score
+  services:
+    - postgres:12.2-alpine
+  variables:
+    TESTSUITE_ALLOW_ROOT: 1
+    PYTEST: pytest
+    POSTGRES_DB: db_migrations_homework
+    POSTGRES_USER: testsuite
+    POSTGRES_PASSWORD: testsuite
+    POSTGRES_HOST_AUTH_METHOD: trust
+    GITLAB_RUN: "true"
+    PYTEST_ADDOPTS: "--postgresql=postgresql://testsuite:testsuite@postgres/"
+  script:
+  - python score_calculator.py
+  artifacts:
+    paths:
+    - result.json

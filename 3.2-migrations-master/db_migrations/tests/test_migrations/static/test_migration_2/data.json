@@ -1,0 +1,146 @@
+{
+    "driver": [
+      {
+        "city": "Moscow",
+        "id": 1,
+        "last_name": "Volozh",
+        "login": "volozh.a",
+        "name": "Arcady"
+      },
+      {
+        "city": "Tel-Aviv",
+        "id": 2,
+        "last_name": "Bunina",
+        "login": "bunina.e",
+        "name": "Lena"
+      },
+      {
+        "city": "Berkeley",
+        "id": 3,
+        "last_name": "Patterson",
+        "login": "patterson.d",
+        "name": "David"
+      },
+      {
+        "city": "San José",
+        "id": 4,
+        "last_name": "Gosling",
+        "login": "gosling.j",
+        "name": "James"
+      },
+      {
+        "city": "Boca Chica Village",
+        "id": 5,
+        "last_name": "Musk",
+        "login": "elon",
+        "name": "Elon"
+      }
+    ],
+    "spaceship": [
+      {
+        "id": 1,
+        "model_id": 3,
+        "ship_number": "A300BC 177"
+      },
+      {
+        "id": 2,
+        "model_id": 1,
+        "ship_number": "A245BC 177"
+      },
+      {
+        "id": 3,
+        "model_id": 2,
+        "ship_number": "A412RE 76"
+      },
+      {
+        "id": 4,
+        "model_id": 4,
+        "ship_number": "X078BA 76"
+      }
+    ],
+    "spaceship_manufacturer": [
+      {
+        "company_name": "Ford Nuclear Engine",
+        "country": "USA",
+        "id": 1,
+        "nasdaq_code": "frdne"
+      },
+      {
+        "company_name": "Cosmical Motors",
+        "country": "USA",
+        "id": 2,
+        "nasdaq_code": "cosmot"
+      },
+      {
+        "company_name": "Автокосмоваз",
+        "country": "RU",
+        "id": 3,
+        "nasdaq_code": "acaz"
+      },
+      {
+        "company_name": "BNW",
+        "country": "GE",
+        "id": 4,
+        "nasdaq_code": "bnw"
+      }
+    ],
+    "spaceship_model": [
+      {
+        "horsepower": 170135000.0,
+        "id": 1,
+        "manufacturer_id": 1,
+        "model_name": "Aerostar"
+      },
+      {
+        "horsepower": 175000000.0,
+        "id": 2,
+        "manufacturer_id": 2,
+        "model_name": "Stardilac"
+      },
+      {
+        "horsepower": 240000000.0,
+        "id": 3,
+        "manufacturer_id": 3,
+        "model_name": "Lada Moonta"
+      },
+      {
+        "horsepower": 190000000.0,
+        "id": 4,
+        "manufacturer_id": 4,
+        "model_name": "X5000"
+      }
+    ],
+    "spaceship_rent": [
+      {
+        "driver_id": 1,
+        "rent_end": "2059-09-30 11:14:04",
+        "rent_start": "2059-07-25 11:13:54",
+        "spaceship_id": 3
+      },
+      {
+        "driver_id": 2,
+        "rent_end": "2064-07-31 11:14:35",
+        "rent_start": "2060-06-24 11:14:23",
+        "spaceship_id": 4
+      },
+      {
+        "driver_id": 3,
+        "rent_end": "2061-11-01 11:15:05",
+        "rent_start": "2055-12-24 11:14:55",
+        "spaceship_id": 2
+      },
+      {
+        "driver_id": 4,
+        "rent_end": "2060-02-29 11:15:36",
+        "rent_start": "2059-12-31 11:15:27",
+        "spaceship_id": 1
+      },
+      {
+        "driver_id": 5,
+        "rent_end": "2059-07-31 11:23:46",
+        "rent_start": "2022-07-15 11:23:35",
+        "spaceship_id": 3
+      }
+    ]
+}
+  

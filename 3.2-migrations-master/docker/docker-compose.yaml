@@ -1,0 +1,41 @@
+version: '2.1'
+
+services:
+    db-postgresql-test:
+        image: "postgres:11"
+        environment:
+          - POSTGRES_HOST_AUTH_METHOD=trust
+          - POSTGRES_USER=testsuite
+          - POSTGRES_PASSWORD=testsuite
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    db-postgresql:
+        extends:
+            service: db-postgresql-test
+        volumes:
+          - ../db_migrations/schemas/postgresql:/schema
+          - ./db-postgresql:/docker-entrypoint-initdb.d
+
+    testsuite:
+        image: testsuite
+        environment:
+          - TESTSUITE_ALLOW_ROOT=1
+          - PATH=/opt/yandex/testsuite/bin:/bin:/usr/bin
+        working_dir: /testsuite/example
+        volumes:
+          - ..:/testsuite/example
+
+    runtests-db_migrations:
+        extends:
+            service: testsuite
+        depends_on:
+            db-postgresql-test:
+                condition: service_healthy
+        environment:
+          - PYTEST_ADDOPTS="--postgresql=postgresql://testsuite:testsuite@db-postgresql-test/"
+        links:
+          - db-postgresql-test

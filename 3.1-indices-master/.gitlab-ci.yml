@@ -1,0 +1,15 @@
+score:
+  image: registry.yandex-academy.ru/school/2024-10/backend/cpp/homeworks/3.1-indices/fruits/service-base:latest
+  services:
+  - name: registry.yandex-academy.ru/school/2024-10/backend/cpp/homeworks/3.1-indices/fruits/store:latest
+    alias: store
+  script:
+  - cd src/
+  - sleep 3
+  - pytest -v --durations=0 
+  artifacts:
+    when: always
+    reports:
+      junit: src/report.xml
+    paths:
+      - src/score.json

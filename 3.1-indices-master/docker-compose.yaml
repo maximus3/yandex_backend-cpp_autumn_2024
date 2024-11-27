@@ -1,0 +1,40 @@
+services:
+
+  service:
+    image: fruits/service-local
+    ports:
+      - 8000:8000
+    networks:
+      - local
+    environment:
+      DATABASE_HOST: "store"
+      DATABASE_PORT: "5432"
+      DATABASE_USER: "user"
+      DATABASE_PASSWORD: "random"
+      PGDATABASE: "homework"
+    volumes:
+      - ./src:/app
+      - ./tasks:/tasks
+    depends_on:
+      - store
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8000"]
+        interval: 5s
+        timeout: 10s
+        retries: 10
+
+  store:
+    image: registry.yandex-academy.ru/school/2024-10/backend/cpp/homeworks/3.1-indices/fruits/store
+    shm_size: 1g
+    ports:
+      - 5432:5432
+    networks:
+      - local
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "random"
+      POSTGRES_DB: "homework"
+
+networks:
+  local:
+    driver: bridge

@@ -1,0 +1,60 @@
+image: registry.yandex-academy.ru/school/2024-10/backend/cpp/homeworks/3.1-indices/fruits/service-ci
+
+stages:
+  - clone_repository
+  - test
+  - push_result
+
+variables:
+  # Прилетают из LMS
+  ENROLLMENT_REPO_PATH: school/2024-10/backend/cpp/homeworks/solves
+  REPO_NAME: test-enrollment-for-hw-3
+  REPO_ID: 9272
+  CALLBACK_URL: https://school.yandex.ru/integration/gitlab/result/
+  ATTEMPT_NUMBER: 2
+  SOLUTION_ID: 12345
+  MAX_SCORE: 100
+  EXTRA_ENV: ""
+  SUBMISSION_FILE_URL: test.txt
+  SUBMISSION_FILE_TYPE: txt
+  SUBMISSION_FILE_NAME: test.txt
+  DATABASE_HOST: "store"
+  DATABASE_PORT: "5432"
+  DATABASE_USER: "user"
+  DATABASE_PASSWORD: "random"
+  PGDATABASE: "homework"
+  PGPASSWORD: "random"
+
+clone_repository:
+  stage: clone_repository
+  artifacts:
+    paths:
+      - $REPO_NAME
+  script:
+    - export GIT_SSH_COMMAND='ssh -i $GIT_SSH_KEY -o IdentitiesOnly=yes -o StrictHostKeyChecking=no'
+    - git clone git@$CI_SERVER_HOST:$ENROLLMENT_REPO_PATH/$REPO_NAME.git
+    - rm -rf .git
+
+run_tests:
+  services:
+    - name: registry.yandex-academy.ru/school/2024-10/backend/cpp/homeworks/3.1-indices/fruits/store
+      alias: store
+  retry: 2
+  stage: test
+  artifacts:
+    paths:
+      - result.json
+  script:
+    - cd $REPO_NAME/src
+    - fastapi run ./enterprise/app.py & disown
+    - pytest --durations=0 || true
+
+push_result:
+  retry: 2
+  dependencies:
+    - run_tests
+  stage: push_result
+  script:
+    - python3 -m pip install requests
+    - python3 reporter.py
+    - rm -rf .git

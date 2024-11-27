@@ -1,0 +1,70 @@
+image: matthewfeickert/docker-python3-ubuntu
+
+before_script:
+  - sudo apt-get update && sudo apt-get install -y postgresql postgresql-client
+  - python --version
+  - python -m pip install --upgrade pip wheel
+  - python -m pip install flake8 pytest
+  - pip install -r requirements.txt
+
+stages:
+  - clone_repository
+  - test
+  - push_result
+
+variables:
+  # Прилетают из LMS
+  ENROLLMENT_REPO_PATH: school/2024-10/backend/cpp/homeworks/solves
+  REPO_NAME: test-solutions-hw-4
+  REPO_ID: 9480
+  CALLBACK_URL: https://school.yandex.ru/integration/gitlab/result/
+  ATTEMPT_NUMBER: 2
+  SOLUTION_ID: 12345
+  MAX_SCORE: 100
+  EXTRA_ENV: ""
+  SUBMISSION_FILE_URL: test.txt
+  SUBMISSION_FILE_TYPE: txt
+  SUBMISSION_FILE_NAME: test.txt
+
+clone_repository:
+  stage: clone_repository
+  artifacts:
+    paths:
+      - $REPO_NAME
+  script:
+    - export GIT_SSH_COMMAND='ssh -i $GIT_SSH_KEY -o IdentitiesOnly=yes -o StrictHostKeyChecking=no'
+    - git clone git@$CI_SERVER_HOST:$ENROLLMENT_REPO_PATH/$REPO_NAME.git
+    - rm -rf .git
+
+test:
+  stage: test
+  services:
+    - postgres:12.2-alpine
+  environment:
+   name: solutions/$SOLUTION_ID
+   auto_stop_in: 30 days
+  variables:
+    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+    TESTSUITE_ALLOW_ROOT: 1
+    PYTEST: pytest
+    POSTGRES_DB: db_migrations_homework
+    POSTGRES_USER: testsuite
+    POSTGRES_PASSWORD: testsuite
+    POSTGRES_HOST_AUTH_METHOD: trust
+    GITLAB_RUN: "true"
+    PYTEST_ADDOPTS: "--postgresql=postgresql://testsuite:testsuite@postgres/"
+  script:
+    - cd $REPO_NAME
+    - python score_calculator.py
+  after_script:
+    - mv $REPO_NAME/result.json .
+  artifacts:
+    paths:
+      - result.json
+
+push_result:
+  stage: push_result
+  retry: 2
+  script:
+    - python3 -m pip install requests
+    - python3 reporter.py

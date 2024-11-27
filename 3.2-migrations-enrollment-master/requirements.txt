@@ -1,0 +1,2 @@
+yandex-taxi-testsuite[postgresql-binary]
+pytest-postgresql
